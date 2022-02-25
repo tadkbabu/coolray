@@ -1,0 +1,200 @@
+<div class="cl-main-sec-container">
+  <div class="head-top-nav">
+    <ul class="top-nav-items">
+      <li class="top-nav-item">Covid-19 Safety</li>
+      <li class="top-nav-item">Career</li>
+      <li class="top-nav-item">Why Us?</li>
+      <li class="top-nav-item">Service Area</li>
+      <li class="top-nav-item">(770) 421-8400</li>
+      <li class="top-nav-item">
+        <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
+      </li>
+    </ul>
+  </div>
+  <div class="head-sec-nav">
+    <div class="sec-nav-logo">
+      <img src="../../assets/images/header-logo.jpeg" alt="header-logo" />
+    </div>
+    <div class="mview-sec-nav-btn">
+      <button class="c-btn schedule-btn">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <em class="btn-text">(770) 421-8400</em>
+      </button>
+      <button class="c-btn schedule-btn">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <em class="btn-text">schedule now</em>
+      </button>
+    </div>
+    <div class="sec-nav-items">
+      <div class="sec-nav-btn">
+        <button class="c-btn schedule-btn">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <em class="btn-text">schedule now</em>
+        </button>
+      </div>
+      <div class="sec-nav-list">
+        <ul class="nav-bar nav-bar-items">
+          <li class="nav-item">Air Condtioning</li>
+          <li class="nav-item">Heating</li>
+          <li class="nav-item">Plumbing</li>
+          <li class="nav-item">Electrical</li>
+          <li class="nav-item">Water Treatment</li>
+          <li class="nav-item">Insulation</li>
+          <li class="nav-item">Maintenance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="head-hero-section">
+    <div class="head-hero">
+      <img src="../../assets/images/herobanner.jpeg" alt="hero-banner" />
+    </div>
+    <div class="head-txt">
+      <p class="search-txt-search">Search</p>
+    </div>
+  </div>
+  <main class="search-main-container">
+    <section class="search-form-section">
+      <!-- <div class="search-form"> -->
+      <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
+      <input
+        class="search-input"
+        type="text"
+        placeholder=" "
+        [(ngModel)]="message"
+        (keyup.enter)="getSearchResults($event.target.value)"
+      />
+      <!-- <fa-icon [icon]="faSpinner" class="spinner-icon fa-spin fa-5x"  *ngIf="isInProgress"></fa-icon> -->
+      <div id="bars" *ngIf="isSpeechOn">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <fa-icon
+        [icon]="faMicrophone"
+        class="microphone-icon"
+        (click)="listenSpeech()"
+      >
+      </fa-icon>
+
+      <fa-icon
+        [icon]="faPauseCircle"
+        class="cancel-icon"
+        (click)="stopSpeeach()"
+        *ngIf="isSpeechOn"
+      ></fa-icon>
+
+      <button class="search-btn btn" (click)="getSearchResults(message)">
+        <em>Search</em>
+      </button>
+      <!-- </div> -->
+    </section>
+    <section class="results-section" *ngIf="isRespReceived">
+      <div class="result-passage">
+        <p class="short-answer">
+          <strong> Answer : </strong>{{ resultShortAnswer }}
+        </p>
+        <h4 class="result-item">For more info, you can read below</h4>
+        <p class="short-passage sresult-item">
+          {{ resultPassage | shorten }}
+          <span>
+            <a
+              href="{{ resultLinkUrl }}"
+              class="read-more-link"
+              target="_blank"
+            >
+              Read More
+            </a>
+          </span>
+        </p>
+        <!-- <a
+          href="{{ resultLinkUrl }}"
+          class="first-res-link result-item"
+          target="_blank"
+          >{{ resultLinkText }}
+        </a> -->
+      </div>
+
+      <!-- <p class="result-cnt">{{ resultsCnt || 0 }} Results</p> -->
+      <!-- Results for heating. Showing 1 - 10 -->
+      <p class="result-cnt" *ngIf="resultsCnt > 0">
+        Results for {{ message }}. Showing 1 - {{ resultsCnt || 0 }} Results
+      </p>
+      <div class="query-results">
+        <div
+          *ngFor="let eachResult of searchResults"
+          class="query-results-item"
+        >
+          <h2 class="res-title">{{ eachResult.title }}</h2>
+          <p class="res-desc">{{ eachResult.desc }}</p>
+        </div>
+      </div>
+    </section>
+    <section class="no-results" *ngIf="!isRespReceived">
+      <div class="loader-res" *ngIf="isInProgress">Loading...</div>
+      <!-- <h2> No Results </h2> -->
+    </section>
+  </main>
+  <!-- <app-footer></app-footer> -->
+  <footer class="footer">
+    <div class="footer-container f-container">
+      <section class="footer-image-section">
+        <div class="footer-logo">
+          <img src="../../assets/images/footer-logo.jpeg" alt="footer-logo" />
+        </div>
+        <div class="copyright-logo">
+          © 2022 Coolray Heating & Air Conditioning all rights reserved
+        </div>
+      </section>
+      <section class="footer-link-items">
+        <ul class="items-list">
+          <li class="flist-item first-column">Air Conditioning</li>
+          <li class="flist-item first-column">Heating</li>
+          <li class="flist-item first-column">Electrical</li>
+          <li class="flist-item first-column">Insulation</li>
+          <li class="flist-item first-column">Reviews</li>
+          <li class="flist-item first-column">Financing</li>
+        </ul>
+        <ul class="items-list">
+          <li class="flist-item first-column">Water Treatment</li>
+          <li class="flist-item first-column">Plumbing</li>
+          <li class="flist-item first-column">Maintenance</li>
+          <li class="flist-item first-column">Offers</li>
+          <li class="flist-item first-column">Service Area</li>
+        </ul>
+        <ul class="items-list">
+          <li class="flist-item second-column">Why Us?</li>
+          <li class="flist-item second-column">Help Guides</li>
+          <li class="flist-item second-column">Careers</li>
+          <li class="flist-item second-column">Sitemap</li>
+        </ul>
+        <ul class="items-list">
+          <li class="flist-item second-column">Contact Us</li>
+          <li class="flist-item second-column">Covid-19 Safety</li>
+          <li class="flist-item second-column">Referral Program</li>
+          <li class="flist-item second-column">Privacy Policy</li>
+        </ul>
+      </section>
+      <section class="footer-social-icons">
+        <ul class="social-items-list">
+          <li class="social-link">
+            <fa-icon [icon]="faTwitter"></fa-icon>
+          </li>
+          <li class="social-link">
+            <fa-icon [icon]="faFacebook"></fa-icon>
+          </li>
+          <li class="social-link">
+            <!-- <em class="fa fa-youtube-square"></em> -->
+            <fa-icon [icon]="faYoutube"></fa-icon>
+          </li>
+          <li class="social-link">
+            <!-- <em class="fa fa-linkedin-square"></em> -->
+            <fa-icon [icon]="faLinkedinIn"></fa-icon>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </footer>
+</div>

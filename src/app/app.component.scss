@@ -1,0 +1,9 @@
+.coolray-container {
+  @media only screen and (max-device-width: 767px) {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+  }
+}

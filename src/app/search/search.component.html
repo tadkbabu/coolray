@@ -1,0 +1,124 @@
+<main class="main-content">
+  <section class="image-section">
+    <div class="hero-banner">
+      <img src="../../assets/images/herobanner.jpeg" alt="hero-banner" />
+    </div>
+    <div class="search-name-div">
+      <p class="search-name">Search</p>
+    </div>
+  </section>
+  <div class="container">
+    <section class="search-form-section">
+      <div class="search-form">
+        <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
+        <input
+          class="search-input"
+          type="text"
+          placeholder=" "
+          [(ngModel)]="message"
+          (keyup.enter)="getSearchResults($event.target.value)"
+        />
+        <!-- <fa-icon [icon]="faSpinner" class="spinner-icon fa-spin fa-5x"  *ngIf="isInProgress"></fa-icon> -->
+        <div id="bars" *ngIf="isSpeechOn">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <fa-icon [icon]="faMicrophone" class="microphone-icon" (click)="listenSpeech()">
+        </fa-icon>
+
+        <fa-icon [icon]="faPauseCircle" class="cancel-icon" (click)="stopSpeeach()" *ngIf="isSpeechOn"></fa-icon>
+
+        <button class="search-btn btn" (click)="getSearchResults(message)">
+          <em>Search</em>
+        </button>
+      </div>
+    </section>
+    <section class="results-section" *ngIf="isRespReceived">
+      <div class="result-passage">
+        <p class="short-answer result-item">
+          <strong> Answer : </strong>{{ resultShortAnswer }}
+        </p>
+        <h4 class="result-item">For more info, you can read below</h4>
+        <p class="short-passage result-item">{{ resultPassage }}</p>
+        <a href="{{ resultLinkUrl }}" class="first-res-link result-item" target="_blank"
+          >{{ resultLinkText }}
+        </a>
+      </div>
+
+      <p class="result-cnt">{{ resultsCnt || 0 }} Results</p>
+
+      <div *ngFor="let eachResult of searchResults" class="results">
+        <h2 class="res-title">{{ eachResult.title }}</h2>
+        <p class="res-desc">{{ eachResult.desc }}</p>
+      </div>
+     
+    </section>
+    <section class="no-results" *ngIf="!isRespReceived">
+        <div class="loader-res"  *ngIf="isInProgress">Loading...</div>
+        <!-- <h2> No Results </h2> -->
+    </section>
+  </div>
+</main>
+
+<!-- <main>
+    <div class="container">
+
+        <div class="search-section">
+
+            <h1 class="search-section__heading" style="text-align: center;margin-bottom: 6.0px;">
+                <span>Welcome to the <strong> GO2bank™ Help Center</strong></span> <br>
+                <span>How can we help?</span>
+            </h1>
+            
+            <div class="search-box">
+
+                <fa-icon [icon]="faSearch" class="search-icon"></fa-icon>
+                <input type="text" placeholder="Search help" value="{{message}}" (keyup.enter)="getSearchResults($event.target.value)">
+                <fa-icon [icon]="faSpinner" class="spinner-icon fa-spin fa-5x"  *ngIf="isInProgress"></fa-icon>
+                <div id="bars" *ngIf="isSpeechOn">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <fa-icon [icon]="faMicrophone" class="microphone-icon" (click)="listenSpeech()">
+                </fa-icon>
+
+                <fa-icon [icon]="faPauseCircle" class="cancel-icon" (click)="stopSpeeach()" *ngIf="isSpeechOn"></fa-icon>
+
+
+            </div>
+            <div>
+                <span class="search-below-text" *ngIf="!isRespReceived">Can’t find your answer? –
+                    <span>
+                        <a href="/help/contact-us" target="_self">Contact us</a>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="results-section" *ngIf="isRespReceived">
+            <div class="result-passage">
+                <p class="short-answer"> <strong> Answer : </strong>{{ resultShortAnswer }}</p>
+                <h4> For more info, you can read below </h4>
+                <p>{{resultPassage}}</p>
+                <a href="{{resultLinkUrl}}" class="first-res-link" target="_blank">{{resultLinkText}} </a>
+            </div>
+
+            <p class="result-cnt"> {{ resultsCnt || 0 }} Results </p>
+
+            <div *ngFor="let eachResult of searchResults" class="results">
+                <h2 class="res-title"> {{ eachResult.title}}</h2>
+                <p class="res-desc"> {{ eachResult.desc}} </p>
+            </div>
+        </div>
+        
+        <div class="no-results" *ngIf="!isRespReceived">
+            <div class="loader-res"  *ngIf="isInProgress">Loading...</div>
+            <h2> No Results </h2>
+        </div>
+    </div>
+</main> -->

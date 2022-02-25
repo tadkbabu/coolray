@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "17fa578b-87d9-4b8f-9961-61d25d533433",
+		"name": "Contextual Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"query\": \"CoolCare Maintenance Agreements\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://greendot-solr-ai-ml-1693772536.us-east-2.elb.amazonaws.com:5020/search",
+					"protocol": "http",
+					"host": [
+						"greendot-solr-ai-ml-1693772536",
+						"us-east-2",
+						"elb",
+						"amazonaws",
+						"com"
+					],
+					"port": "5020",
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
